@@ -1,0 +1,191 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-script: "Caveat", cursive;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    background-color: #fcebf4;
+    color: #35182f;
+    transition: background-color 450ms ease, color 450ms ease;
+  }
+
+  html.dark body {
+    background-color: #170e22;
+    color: #fdf2f8;
+  }
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+}
+
+.font-ui {
+  font-family: var(--font-sans);
+}
+
+.font-handwritten {
+  font-family: var(--font-script);
+}
+
+/* Baby Pink & Lavender Pastel Silk Surface (Default Light Theme) */
+.table-surface-pastel {
+  background-color: #fcebf4;
+  background-image:
+    radial-gradient(ellipse 75% 58% at 18% 18%, rgba(249, 168, 212, 0.36) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 84% 22%, rgba(196, 181, 253, 0.42) 0%, transparent 62%),
+    radial-gradient(ellipse 65% 50% at 50% 85%, rgba(244, 187, 224, 0.32) 0%, transparent 65%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(168, 85, 247, 0.018) 0px,
+      rgba(168, 85, 247, 0.018) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(236, 72, 153, 0.018) 0px,
+      rgba(236, 72, 153, 0.018) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+}
+
+/* Twilight Lavender & Candlelit Rose Surface (Dark Toggle Theme) */
+.table-surface-twilight {
+  background-color: #170e22;
+  background-image:
+    radial-gradient(ellipse 68% 52% at 50% 34%, rgba(244, 114, 182, 0.16) 0%, rgba(167, 139, 250, 0.1) 46%, transparent 78%),
+    radial-gradient(circle at 14% 16%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 86% 82%, rgba(168, 85, 247, 0.14) 0%, transparent 48%),
+    repeating-linear-gradient(
+      92deg,
+      rgba(249, 168, 212, 0.016) 0px,
+      rgba(249, 168, 212, 0.016) 2px,
+      transparent 2px,
+      transparent 14px
+    );
+}
+
+/* Tactile blush-lavender parchment paper */
+.parchment-card {
+  background-color: #fff8fc;
+  background-image:
+    radial-gradient(circle at 18% 18%, rgba(252, 231, 243, 0.65) 0%, transparent 55%),
+    radial-gradient(circle at 84% 86%, rgba(237, 233, 254, 0.65) 0%, transparent 60%);
+}
+
+html.dark .parchment-card {
+  background-color: #fdf6fb;
+  background-image:
+    radial-gradient(circle at 18% 18%, rgba(252, 231, 243, 0.72) 0%, transparent 55%),
+    radial-gradient(circle at 84% 86%, rgba(233, 213, 255, 0.68) 0%, transparent 60%);
+}
+
+/* 3D perspective helpers */
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Ambient floating animations (compositor-only: transform & opacity) */
+@keyframes petalDrift {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.78;
+  }
+  88% {
+    opacity: 0.68;
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 48px), 106vh, 0) rotate(var(--drift-rot, 260deg));
+    opacity: 0;
+  }
+}
+
+@keyframes moteFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate3d(var(--mote-x, 14px), var(--mote-y, -28px), 0) scale(1.25);
+    opacity: 0.8;
+  }
+}
+
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scaleX(1) scaleY(1) rotate(-1.5deg);
+  }
+  25% {
+    transform: scaleX(0.94) scaleY(1.06) rotate(2deg);
+  }
+  50% {
+    transform: scaleX(1.04) scaleY(0.95) rotate(-1deg);
+  }
+  75% {
+    transform: scaleX(0.96) scaleY(1.04) rotate(1.5deg);
+  }
+}
+
+@keyframes smokeRise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.7);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(12px, -64px, 0) scale(1.9);
+    opacity: 0;
+  }
+}
+
+.animate-petal {
+  animation: petalDrift var(--petal-duration, 16s) linear infinite;
+  animation-delay: var(--petal-delay, 0s);
+}
+
+.animate-mote {
+  animation: moteFloat var(--mote-duration, 7s) ease-in-out infinite;
+  animation-delay: var(--mote-delay, 0s);
+}
+
+.animate-flame {
+  transform-origin: bottom center;
+  animation: flameFlicker 1.6s ease-in-out infinite;
+}
+
+.animate-smoke {
+  animation: smokeRise 2.2s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-petal,
+  .animate-mote,
+  .animate-flame,
+  .animate-smoke {
+    animation: none !important;
+  }
+}

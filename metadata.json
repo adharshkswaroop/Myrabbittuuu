@@ -1,0 +1,6 @@
+{
+  "name": "For My Cutieluuuu — Birthday Love Letter",
+  "description": "An intimate, interactive candlelit birthday love letter and keepsake of our 8 moments together.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
